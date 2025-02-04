@@ -42,10 +42,7 @@ export class CarsEditorComponent implements OnInit {
   public ngOnInit(): void {
     this.form = this._formBuilder.group({
       maintenanceHistory: null,
-      code: [
-        { value: '', disabled: !this.isEditor() },
-        [Validators.required, Validators.maxLength(5)],
-      ],
+      code: [{ value: '', disabled: !this.isEditor() }, [Validators.required]],
       company: [
         { value: '', disabled: !this.isEditor() },
         [Validators.required],
