@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-12 d-flex justify-content-end">
+    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Add">
+      <fa-icon
+        class="mx-5 my-3 d-flex justify-content-md fs-3"
+        [icon]="faSquarePlus"
+        routerLink="/drivers/new"
+      ></fa-icon>
+    </span>
+  </div>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">Name</th>
+      <th scope="col">LastName</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of driversService.drivers; track item) {
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.lastName }}</td>
+      <td>
+        <app-tools [itemId]="item.id" (action)="takeAction($event)"></app-tools>
+      </td>
+    </tr>
+    }@empty {
+    <tr>
+      <td>NoData</td>
+    </tr>
+    }
+  </tbody>
+</table>

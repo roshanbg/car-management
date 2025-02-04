@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-12 d-flex justify-content-end">
+    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Add">
+      <fa-icon
+        [icon]="faSquarePlus"
+        routerLink="/cars/new"
+        class="mx-5 d-md-flex justify-content-md my-3 fs-3"
+      ></fa-icon>
+    </span>
+  </div>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">Code</th>
+      <th scope="col">Company</th>
+      <th scope="col">Mdel</th>
+      <th scope="col">Color</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of carsService.cars; track item) {
+    <tr>
+      <td>{{ item.code }}</td>
+      <td>{{ item.company }}</td>
+      <td>{{ item.model }}</td>
+      <td class="pt-3">
+        <fa-icon
+          [title]="item.color"
+          [style.color]="item.color"
+          [icon]="faCircle"
+        ></fa-icon>
+      </td>
+      <td>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <app-tools
+            [itemId]="item.id"
+            (action)="takeAction($event)"
+          ></app-tools>
+        </div>
+      </td>
+    </tr>
+    }@empty {
+    <tr>
+      <td>No Data</td>
+    </tr>
+    }
+  </tbody>
+</table>

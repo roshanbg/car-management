@@ -1,0 +1,72 @@
+<div class="card">
+  <div class="card-header">Car</div>
+  <div class="card-body">
+    <div [formGroup]="form">
+      <div class="row mb-3">
+        <div class="col-6">
+          <label class="form-label">
+            Code @if(form.get("code")?.invalid){
+            <span class="text-danger">*</span>
+            }
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="code"
+            appAlphabetOnly
+          />
+        </div>
+        <div class="col-6">
+          <label class="form-label"
+            >Company @if(form.get("company")?.invalid){
+            <span class="text-danger">*</span>
+            }</label
+          >
+          <input class="form-control" formControlName="company" />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <label class="form-label"
+            >Model @if(form.get("model")?.invalid){
+            <span class="text-danger">*</span>
+            }</label
+          >
+          <input class="form-control" formControlName="model" />
+        </div>
+        <div class="col-6">
+          <label class="form-label">
+            Color @if (form.get('color')?.invalid) {
+            <span class="text-danger">*</span>
+            }
+          </label>
+          <input type="color" class="form-control" formControlName="color" />
+        </div>
+      </div>
+    </div>
+
+    <app-maintenance
+      [repairLogs]="repairLogs"
+      [isEditor]="isEditor()"
+      (maintenanceListChanged)="repairLogs = $event"
+    ></app-maintenance>
+
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end">
+        @if (isEditor()) {
+        <button
+          type="submit"
+          [disabled]="!form.valid"
+          class="btn btn-primary mx-1"
+          (click)="onSubmit()"
+        >
+          Submit
+        </button>
+        }
+        <button type="button" routerLink="/cars" class="btn btn-secondary mx-1">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

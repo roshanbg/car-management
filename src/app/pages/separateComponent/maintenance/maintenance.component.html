@@ -1,0 +1,42 @@
+<div class="row">
+  <h5>Maintenance History</h5>
+  @for (item of repairLogs(); track item) {
+  <div class="col-5 mb-2">
+    <label class="form-label">Date:</label>
+    <input
+      class="form-control"
+      type="date"
+      [value]="item.date"
+      [disabled]="!isEditor()"
+      (change)="inputChanged($event, item, 'date')"
+    />
+  </div>
+  <div class="col-6 mb-2">
+    <label class="form-label">Dsc:</label>
+    <textarea
+      class="form-control"
+      rows="3"
+      [value]="item.dsc"
+      [disabled]="!isEditor()"
+      (change)="inputChanged($event, item, 'dsc')"
+    ></textarea>
+  </div>
+  <div class="col-1">
+    @if (isEditor()) {
+    <button
+      class="btn btn-danger"
+      type="button"
+      (click)="deleteMaintenance(item.id)"
+    >
+      Delete
+    </button>
+    }
+  </div>
+  } @if (isEditor()) {
+  <div class="col-12 mt-3 d-flex justify-content-center">
+    <button class="btn btn-primary" type="button" (click)="addMaintenance()">
+      Add Maintenance
+    </button>
+  </div>
+  }
+</div>
